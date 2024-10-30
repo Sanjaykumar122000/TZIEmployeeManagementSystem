@@ -1,0 +1,159 @@
+Employee Management System API Documentation
+Base URL
+All endpoints are accessible under the base URL:
+
+
+/api/employees
+Endpoints
+1. Create Employee
+Description: Adds a new employee to the system.
+Method: POST
+Endpoint: /api/employees
+Request Body (JSON):
+json
+Copy code
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phoneNumber": "123-456-7890",
+  "position": "Software Engineer",
+  "onboardingStatus": true,
+  "profileDetails": "Experienced software engineer specializing in Java and Spring Boot."
+}
+Responses:
+201 Created:
+json
+Copy code
+{
+  "id": 1,
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phoneNumber": "123-456-7890",
+  "position": "Software Engineer",
+  "onboardingStatus": true,
+  "profileDetails": "Experienced software engineer specializing in Java and Spring Boot.",
+  "createdAt": "2024-10-26T10:00:00",
+  "updatedAt": "2024-10-26T10:00:00"
+}
+2. Get All Employees
+Description: Retrieves a list of all employees in the system.
+Method: GET
+Endpoint: /api/employees
+Responses:
+200 OK:
+json
+Copy code
+[
+  {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phoneNumber": "123-456-7890",
+    "position": "Software Engineer",
+    "onboardingStatus": true,
+    "profileDetails": "Experienced software engineer specializing in Java and Spring Boot.",
+    "createdAt": "2024-10-26T10:00:00",
+    "updatedAt": "2024-10-26T10:00:00"
+  },
+  {
+    "id": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane.smith@example.com",
+    "phoneNumber": "987-654-3210",
+    "position": "Product Manager",
+    "onboardingStatus": false,
+    "profileDetails": "Product manager with experience in tech startups.",
+    "createdAt": "2024-10-26T11:00:00",
+    "updatedAt": "2024-10-26T11:00:00"
+  }
+]
+3. Get Employee by ID
+Description: Retrieves details for a specific employee by ID.
+Method: GET
+Endpoint: /api/employees/{id}
+Path Parameters:
+id (Long): ID of the employee.
+Responses:
+200 OK:
+json
+Copy code
+{
+  "id": 1,
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phoneNumber": "123-456-7890",
+  "position": "Software Engineer",
+  "onboardingStatus": true,
+  "profileDetails": "Experienced software engineer specializing in Java and Spring Boot.",
+  "createdAt": "2024-10-26T10:00:00",
+  "updatedAt": "2024-10-26T10:00:00"
+}
+404 Not Found:
+json
+Copy code
+{
+  "error": "Employee not found with id 1"
+}
+4. Update Employee
+Description: Updates details for a specific employee by ID.
+Method: PUT
+Endpoint: /api/employees/{id}
+Path Parameters:
+id (Long): ID of the employee.
+Request Body (JSON):
+json
+Copy code
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phoneNumber": "123-456-7890",
+  "position": "Senior Software Engineer",
+  "onboardingStatus": true,
+  "profileDetails": "Promoted to senior software engineer with additional responsibilities."
+}
+Responses:
+200 OK:
+json
+Copy code
+{
+  "id": 1,
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phoneNumber": "123-456-7890",
+  "position": "Senior Software Engineer",
+  "onboardingStatus": true,
+  "profileDetails": "Promoted to senior software engineer with additional responsibilities.",
+  "createdAt": "2024-10-26T10:00:00",
+  "updatedAt": "2024-10-26T10:15:00"
+}
+404 Not Found:
+json
+Copy code
+{
+  "error": "Employee not found with id 1"
+}
+5. Delete Employee
+Description: Deletes a specific employee by ID.
+Method: DELETE
+Endpoint: /api/employees/{id}
+Path Parameters:
+id (Long): ID of the employee.
+Responses:
+204 No Content: Successful deletion (no response body).
+404 Not Found:
+json
+Copy code
+{
+  "error": "Employee not found with id 1"
+}
+Error Codes
+400 Bad Request: Invalid input provided, such as invalid JSON format.
+404 Not Found: Employee not found for the provided ID.
+500 Internal Server Error: An unexpected error occurred on the server.
